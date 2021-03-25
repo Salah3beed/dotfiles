@@ -1,0 +1,30 @@
+call plug#begin('~/.vim/plugged')
+
+
+Plug 'sirver/ultisnips'
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'honza/vim-snippets'
+map <Space>o o<Esc>k   
+
+map <Space>O O<Esc>k   
+
+Plug 'lervag/vimtex'
+map <F11> :set arabic <CR>
+map <F12> :set noarabic <CR>
+
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
+
+vnoremap <C-c> "+y
+map <C-p> "+p
+map <C-s> :w <CR> 
+
+call plug#end()

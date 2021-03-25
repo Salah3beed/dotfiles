@@ -1,0 +1,10 @@
+# open the help menu
+super + F1
+  bash ~/scripts/sxhkd-help
+
+# Reload sxhkdrc
+super + shift + r
+    pkill -x sxhkd; notify-send 'sxhkd' 'Reloaded config' 
+    i3-msg  restart
+
+

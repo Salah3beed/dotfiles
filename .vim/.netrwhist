@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/run/media/salah3beed/Non/GUC - University/Engineering 2nd/Semester 1/DE3/Week_12'
+let g:netrw_dirhist_2='/home/salah3beed/GUC-Grades'
+let g:netrw_dirhist_1='/home/salah3beed/.vim/plugged/ultisnips/plugin'
