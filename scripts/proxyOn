@@ -1,0 +1,16 @@
+#!/bin/sh
+
+
+
+all_proxy="http://$1:$2/"
+http_proxy="http://$1:$2/"
+https_proxy="https://$1:$2/"
+ftp_proxy="ftp://$1:$2/"
+socks_proxy="socks://$1:$2/"
+no_proxy="localhost,127.0.0.1"
+
+export all_proxy
+export http_proxy
+export https_proxy
+export ftp_proxy
+export socks_proxy

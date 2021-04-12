@@ -1,0 +1,12 @@
+#!/bin/bash
+echo -n "Enter the url: "
+read SERVERIP
+
+ping -c 3 $SERVERIP > /dev/null 2>&1
+if [ $? -ne 0 ]
+  then
+   # Use your favorite mailer here:
+    echo "Website $SERVERIP is down unfort"
+  else  
+    echo "Website $SERVERIP is working 100% "
+  fi

@@ -1,0 +1,5 @@
+[Added Associations]
+image/png=feh.desktop;
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
+application/x-ms-dos-executable=wine.desktop;
+text/calendar=org.gnome.gedit.desktop;vim.desktop;

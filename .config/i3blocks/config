@@ -1,0 +1,78 @@
+# For the benefit of emacs users: -*- shell-script -*-
+#
+#  _ _____ _     _            _
+# (_)___ /| |__ | | ___   ___| | _____
+# | | |_ \| '_ \| |/ _ \ / __| |/ / __|
+# | |___) | |_) | | (_) | (__|   <\__ \
+# |_|____/|_.__/|_|\___/ \___|_|\_\___/
+
+align=center
+separator=false
+color=#f8f8f2
+separator_block_width=15
+markup=pango
+
+
+# Fetch the public IP address only on startup
+[public-ip]
+command=wget -qO - icanhazip.com
+interval=repeat
+
+[weather]
+command=curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
+interval=3600
+
+[battery]
+command=~/.scripts/battery.sh
+interval=2
+label=<span color="#f1fa8c"> </span>
+
+[wifi]
+command=iwgetid -r | tr '\n' ' ' && grep $(iwgetid -m | awk '{ printf "%s", $1 }') /proc/net/wireless | awk '{ printf "%i%\n", int($3 * 100 / 70) }'
+instance=wlp11s0f3u1
+interval=5
+label=<span color="#f1fa8c">  </span>
+
+[mediaplayer]
+command=playerctl metadata --format "{{title}}"| awk '{$0=substr($0,0,32); print $0;}'
+interval=2
+label=<span color="#f1fa8c"> </span>
+
+[home]
+command=df -h /home | awk 'FNR==2{print $4}'
+interval=3
+label=<span color="#f1fa8c"> </span>
+
+
+[cpu_load]
+command=sar -u 1 1 | awk 'FNR == 5 { printf "%04.1f<span color=\"#50fa7b\"><b>%</b></span>\n", (100 - $8) } '
+interval=2
+label=<span color="#f1fa8c"><b>CPU: </b></span>
+
+[cpu_temperature]
+command=sensors | awk '{ if ($1 == "CPU" && $2 == "Temperature:") { gsub(/[+°C]/, "") ; printf "%i<span color=\"#50fa7b\">糖 </span>\n", $3 } }'
+interval=2
+
+[memory]
+command=free -h --si | awk 'FNR==2{ print $0 }' | awk '{ print $7 }'
+interval=2
+label=<span color="#f1fa8c"> </span>
+
+[volume]
+command=pulseaudio-ctl full-status | awk '{ printf "%i%\n", $1 }'
+interval=1
+label=<span color="#f1fa8c"> </span>
+
+[time_est]
+command=TZ=":Africa/Cairo" date '+%I:%M %a %d %b %Y '
+interval=1
+label=<span color="#f1fa8c"> </span>
+
+[shutdown_menu]
+full_text=<span color="#990103"> </span>
+command=~/.i3/i3scripts/shutdown_menu/shutdown_menu
+ROFI_TEXT=Menu:
+ROFI_OPTIONS=-no-config -location 3 -yoffset 29 -width 5 -xoffset 5 -bw 0 -border 0 -theme ~/.config/rofi/menu.rasi
+ENABLE_CONFIRMATIONS=true
+LAUNCHER=rofi
+LOCKSCRIPT=betterlockscreen -l dimblur
